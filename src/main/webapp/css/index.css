@@ -1,0 +1,15 @@
+.col1 {
+    width: 15%;
+}
+
+.card-text, .card-title {
+    margin-bottom: unset;
+    text-align: center;
+}
+.imgP {
+    text-align: center;
+}
+
+.card-text:last-child {
+    margin-bottom: 100px;
+}
