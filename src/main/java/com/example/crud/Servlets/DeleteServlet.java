@@ -11,10 +11,12 @@ import java.io.IOException;
 @WebServlet(name = "delete", value = "/delete")
 public class DeleteServlet extends HttpServlet {
 
+    private static final long serialVersionUID = 7442436782466453398L;
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        File file = null;
-        String path = request.getServletContext().getRealPath("")+"img\\";
+        File file;
+        String path = request.getServletContext().getRealPath("")+"img/";
         try {
             String link = request.getParameter("link");
             path = path.concat(link);

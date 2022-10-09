@@ -1,13 +1,5 @@
-<%@ page import="com.example.crud.Database.Gallery" %>
-<%@ page import="java.io.File" %><%--
-  Created by IntelliJ IDEA.
-  User: ilyan
-  Date: 04.10.2022
-  Time: 18:58
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -24,7 +16,7 @@
         <div class="col">
             <div class="container">
                 <%
-                    String path = "img\\";
+                    String path = "img/";
                 %>
                 <p class="imgP"><img src="<%=path%>${gallery.getLink()}" class="img card-img-top" alt="..."></p>
                 <div class="card-body">

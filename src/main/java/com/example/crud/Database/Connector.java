@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class Connector {
 
-    private static String url = "jdbc:mysql://localhost:3306/gallery";
-    private static String username = "root";
-    private static String password = "G2712199188312g";
+    private static final String url = "jdbc:mysql://app-db/myDB";
+    private static final String username = "root";
+    private static final String password = "password";
 
     public static ArrayList<Gallery> select() {
 

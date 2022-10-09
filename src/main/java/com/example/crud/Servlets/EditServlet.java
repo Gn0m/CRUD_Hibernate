@@ -13,6 +13,7 @@ import java.util.Collection;
 @MultipartConfig
 @WebServlet(name = "edit", value = "/edit")
 public class EditServlet extends HttpServlet {
+    private static final long serialVersionUID = -8102053329750483499L;
     private Gallery gallery;
 
     @Override
@@ -34,9 +35,9 @@ public class EditServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        File file = null;
-        String pathOld = null;
-        String path = request.getServletContext().getRealPath("")+"img\\";
+        File file;
+        String pathOld;
+        String path = request.getServletContext().getRealPath("")+"img/";
         String link = gallery.getLink();
         pathOld = path.concat(link);
         file = new File(pathOld);

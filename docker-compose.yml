@@ -1,0 +1,15 @@
+version: "3"
+services:
+  app-db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=myDB
+    volumes:
+      - ./src/main/db/gallery.sql:/docker-entrypoint-initdb.d/gallery.sql
+  my-web-app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - app-db

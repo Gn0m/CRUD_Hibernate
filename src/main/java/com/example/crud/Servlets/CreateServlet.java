@@ -13,6 +13,8 @@ import java.util.Collection;
 @MultipartConfig
 @WebServlet(name = "create", value = "/create")
 public class CreateServlet extends HttpServlet {
+    private static final long serialVersionUID = -1158571200668059774L;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/create.jsp").forward(request, response);
@@ -22,7 +24,7 @@ public class CreateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         File file = null;
         String appPath = request.getServletContext().getRealPath("");
-        String path = appPath + "img\\";
+        String path = appPath + "img/";
         System.out.println(path);
         System.out.println(path);
         try {
