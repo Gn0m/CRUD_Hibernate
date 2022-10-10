@@ -24,19 +24,20 @@
             <th class="col1">Storage</th>
             <th class="col1">Price</th>
         </tr>
-        <c:forEach var="item" items="${gallery}">
+        <%--@elvariable id="picture" type="java.util.List"--%>
+        <c:forEach var="picture" items="${pictures}">
             <tr>
-                <td>${item.getName()}</td>
-                <td>${item.getAuthor()}</td>
-                <td>${item.getYear()}</td>
-                <td>${item.getStorage()}</td>
-                <td>${item.getPrice()}</td>
+                <td>${picture.getName()}</td>
+                <td>${picture.getAuthor()}</td>
+                <td>${picture.getYear()}</td>
+                <td>${picture.getStorage()}</td>
+                <td>${picture.getPrice()}</td>
                 <td>
-                    <a href='<c:url value="/edit?id=${item.getId()}" />'>Edit</a>
-                    <a href='<c:url value="/view?id=${item.getId()}" />'>View</a>
+                    <a href='<c:url value="/edit?id=${picture.getId()}" />'>Edit</a>
+                    <a href='<c:url value="/view?id=${picture.getId()}" />'>View</a>
                     <form method="post" action='<c:url value="/delete" />' style="display:inline;">
-                        <input type="hidden" name="id" value="${item.getId()}">
-                        <input type="hidden" name="link" value="${item.getLink()}">
+                        <input type="hidden" name="id" value="${picture.getId()}">
+                        <input type="hidden" name="link" value="${picture.getLink()}">
                         <input type="submit" value="Delete">
                     </form>
                 </td>

@@ -1,5 +1,6 @@
+<%@ page import="java.io.File" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -16,13 +17,13 @@
         <div class="col">
             <div class="container">
                 <%
-                    String path = "img/";
+                    String path = "img" + File.separator;
                 %>
-                <p class="imgP"><img src="<%=path%>${gallery.getLink()}" class="img card-img-top" alt="..."></p>
+                <p class="imgP"><img src="<%=path%>${picture.getLink()}" class="img card-img-top" alt="..."></p>
                 <div class="card-body">
-                    <h5 class="card-title">${gallery.getName()}</h5>
-                    <p class="card-text">Год: ${gallery.getYear()}, Автор: ${gallery.getAuthor()}</p>
-                    <p class="card-text">Место хранения: ${gallery.getStorage()}, Цена: ${gallery.getPrice()}</p>
+                    <h5 class="card-title">${picture.getName()}</h5>
+                    <p class="card-text">Год: ${picture.getYear()}, Автор: ${picture.getAuthor()}</p>
+                    <p class="card-text">Место хранения: ${picture.getStorage()}, Цена: ${picture.getPrice()}</p>
                 </div>
             </div>
         </div>

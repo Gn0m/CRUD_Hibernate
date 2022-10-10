@@ -16,14 +16,14 @@ public class DeleteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         File file;
-        String path = request.getServletContext().getRealPath("")+"img/";
+        String path = request.getServletContext().getRealPath("") + "img" + File.separator;
         try {
             String link = request.getParameter("link");
             path = path.concat(link);
             file = new File(path);
             file.delete();
             int id = Integer.parseInt(request.getParameter("id"));
-            Connector.delete(id);
+            new Connector().delete(id);
             response.sendRedirect(request.getContextPath() + "");
         } catch (Exception ex) {
             getServletContext().getRequestDispatcher("/notfound.jsp").forward(request, response);

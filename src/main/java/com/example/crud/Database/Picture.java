@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class Gallery implements Serializable {
+public class Picture implements Serializable {
 
     private static final long serialVersionUID = -7124516917206618209L;
     private int id;
@@ -18,10 +18,10 @@ public class Gallery implements Serializable {
     private double price;
     private String link;
 
-    public Gallery() {
+    public Picture() {
     }
 
-    public Gallery(String name, String author, int year, String storage, double price, String link) {
+    public Picture(String name, String author, int year, String storage, double price, String link) {
         this.name = name;
         this.author = author;
         this.year = year;
@@ -30,7 +30,7 @@ public class Gallery implements Serializable {
         this.link = link;
     }
 
-    public Gallery(int id, String name, String author, int year, String storage, double price, String link) {
+    public Picture(int id, String name, String author, int year, String storage, double price, String link) {
         this.id = id;
         this.name = name;
         this.author = author;

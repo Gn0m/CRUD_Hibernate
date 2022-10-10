@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ilyan
-  Date: 04.10.2022
-  Time: 13:22
-  To change this template use File | Settings | File Templates.
---%>
+<%--@elvariable id="picture" type="java"--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -21,17 +15,17 @@
   <h3>Edit Image</h3>
   <form method="post" action="${pageContext.request.contextPath}/edit" enctype="multipart/form-data"
         style="margin-top: 50px">
-    <input name="id" type="hidden" value="${gallery.getId()}"  />
+    <input name="id" type="hidden" value="${picture.getId()}"  />
     <label>Name</label><br>
-    <input name="name" value="${gallery.getName()}"/><br><br>
+    <input name="name" value="${picture.getName()}"/><br><br>
     <label>Author</label><br>
-    <input name="author" value="${gallery.getAuthor()}"/><br><br>
+    <input name="author" value="${picture.getAuthor()}"/><br><br>
     <label>Year</label><br>
-    <input name="year" value="${gallery.getYear()}"/><br><br>
+    <input name="year" value="${picture.getYear()}"/><br><br>
     <label>Storage</label><br>
-    <input name="storage" value="${gallery.getStorage()}"/><br><br>
+    <input name="storage" value="${picture.getStorage()}"/><br><br>
     <label>Price</label><br>
-    <input name="price" type="number" value="${gallery.getPrice()}"/><br><br>
+    <input name="price" type="number" value="${picture.getPrice()}"/><br><br>
     <input type="file" name="file" value="select images..."/>
     <input type="submit" value="Save" />
   </form>

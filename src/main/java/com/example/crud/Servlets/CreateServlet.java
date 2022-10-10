@@ -1,7 +1,7 @@
 package com.example.crud.Servlets;
 
 import com.example.crud.Database.Connector;
-import com.example.crud.Database.Gallery;
+import com.example.crud.Database.Picture;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -24,20 +24,10 @@ public class CreateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         File file = null;
         String appPath = request.getServletContext().getRealPath("");
-        String path = appPath + "img/";
-        System.out.println(path);
-        System.out.println(path);
+        String path = appPath + "img" + File.separator;
         try {
 
-            Collection<Part> items = request.getParts();
-
-            for (Part item : items) {
-                if (item.getName().equals("file")) {
-                    File uploadDir = new File(path);
-                    file = File.createTempFile("img", ".png", uploadDir);
-                    item.write(String.valueOf(file));
-                }
-            }
+            file = EditServlet.getFile(request, file, path);
 
             String name = request.getParameter("name");
             String author = request.getParameter("author");
@@ -45,8 +35,8 @@ public class CreateServlet extends HttpServlet {
             String storage = request.getParameter("storage");
             double price = Double.parseDouble(request.getParameter("price"));
             String link = file.getName();
-            Gallery gallery = new Gallery(name, author, year, storage, price, link);
-            Connector.insert(gallery);
+            Picture picture = new Picture(name, author, year, storage, price, link);
+            new Connector().insert(picture);
             response.sendRedirect(request.getContextPath() + "");
         } catch (Exception ex) {
 

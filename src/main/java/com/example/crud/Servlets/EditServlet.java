@@ -1,7 +1,7 @@
 package com.example.crud.Servlets;
 
 import com.example.crud.Database.Connector;
-import com.example.crud.Database.Gallery;
+import com.example.crud.Database.Picture;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -14,16 +14,16 @@ import java.util.Collection;
 @WebServlet(name = "edit", value = "/edit")
 public class EditServlet extends HttpServlet {
     private static final long serialVersionUID = -8102053329750483499L;
-    private Gallery gallery;
+    private Picture picture;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
             int id = Integer.parseInt(request.getParameter("id"));
-            gallery = Connector.selectOne(id);
-            if (gallery != null) {
-                request.setAttribute("gallery", gallery);
+            picture = new Connector().selectOne(id);
+            if (picture != null) {
+                request.setAttribute("picture", picture);
                 getServletContext().getRequestDispatcher("/edit.jsp").forward(request, response);
             } else {
                 getServletContext().getRequestDispatcher("/notfound.jsp").forward(request, response);
@@ -37,21 +37,14 @@ public class EditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         File file;
         String pathOld;
-        String path = request.getServletContext().getRealPath("")+"img/";
-        String link = gallery.getLink();
+        String path = request.getServletContext().getRealPath("") + "img" + File.separator;
+        String link = picture.getLink();
         pathOld = path.concat(link);
         file = new File(pathOld);
         file.delete();
 
         try {
-            Collection<Part> items = request.getParts();
-            for (Part item : items) {
-                if (item.getName().equals("file")) {
-                    File uploadDir = new File(path);
-                    file = File.createTempFile("img", ".png", uploadDir);
-                    item.write(String.valueOf(file));
-                }
-            }
+            file = getFile(request, file, path);
 
             int id = Integer.parseInt(request.getParameter("id"));
             String name = request.getParameter("name");
@@ -60,12 +53,23 @@ public class EditServlet extends HttpServlet {
             String storage = request.getParameter("storage");
             double price = Double.parseDouble(request.getParameter("price"));
             link = file.getName();
-            Gallery gallery = new Gallery(id, name, author, year, storage, price, link);
-            Connector.update(gallery);
+            Picture picture = new Picture(id, name, author, year, storage, price, link);
+            new Connector().update(picture);
             response.sendRedirect(request.getContextPath() + "");
         } catch (Exception ex) {
-
             getServletContext().getRequestDispatcher("/notfound.jsp").forward(request, response);
         }
+    }
+
+    static File getFile(HttpServletRequest request, File file, String path) throws IOException, ServletException {
+        Collection<Part> items = request.getParts();
+        for (Part item : items) {
+            if (item.getName().equals("file")) {
+                File uploadDir = new File(path);
+                file = File.createTempFile("img", ".png", uploadDir);
+                item.write(String.valueOf(file));
+            }
+        }
+        return file;
     }
 }
