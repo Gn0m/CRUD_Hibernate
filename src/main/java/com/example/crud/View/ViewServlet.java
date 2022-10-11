@@ -1,7 +1,7 @@
-package com.example.crud.Servlets;
+package com.example.crud.View;
 
-import com.example.crud.Database.Connector;
-import com.example.crud.Database.Picture;
+import com.example.crud.Controller.ConnectorDAO;
+import com.example.crud.Model.PictureEntity;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -10,13 +10,13 @@ import java.io.IOException;
 
 @WebServlet(name = "view", value = "/view")
 public class ViewServlet extends HttpServlet {
-    private Picture picture;
+    private PictureEntity picture;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int id = Integer.parseInt(request.getParameter("id"));
-            picture = new Connector().selectOne(id);
+            picture = new ConnectorDAO().selectOne(id);
 
             if (picture != null) {
                 request.setAttribute("picture", picture);

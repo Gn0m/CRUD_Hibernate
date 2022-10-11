@@ -1,6 +1,6 @@
-package com.example.crud.Servlets;
+package com.example.crud.View;
 
-import com.example.crud.Database.Connector;
+import com.example.crud.Controller.ConnectorDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -23,7 +23,7 @@ public class DeleteServlet extends HttpServlet {
             file = new File(path);
             file.delete();
             int id = Integer.parseInt(request.getParameter("id"));
-            new Connector().delete(id);
+            new ConnectorDAO().delete(id);
             response.sendRedirect(request.getContextPath() + "");
         } catch (Exception ex) {
             getServletContext().getRequestDispatcher("/notfound.jsp").forward(request, response);

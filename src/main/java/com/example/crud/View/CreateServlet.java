@@ -1,14 +1,14 @@
-package com.example.crud.Servlets;
+package com.example.crud.View;
 
-import com.example.crud.Database.Connector;
-import com.example.crud.Database.Picture;
+import com.example.crud.Controller.ConnectorDAO;
+import com.example.crud.Model.PictureEntity;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collection;
+import java.math.BigDecimal;
 
 @MultipartConfig
 @WebServlet(name = "create", value = "/create")
@@ -33,10 +33,10 @@ public class CreateServlet extends HttpServlet {
             String author = request.getParameter("author");
             int year = Integer.parseInt(request.getParameter("year"));
             String storage = request.getParameter("storage");
-            double price = Double.parseDouble(request.getParameter("price"));
+            BigDecimal price = BigDecimal.valueOf(Double.parseDouble(request.getParameter("price")));
             String link = file.getName();
-            Picture picture = new Picture(name, author, year, storage, price, link);
-            new Connector().insert(picture);
+            PictureEntity picture = new PictureEntity(name, author, year, storage, price, link);
+            new ConnectorDAO().insert(picture);
             response.sendRedirect(request.getContextPath() + "");
         } catch (Exception ex) {
 

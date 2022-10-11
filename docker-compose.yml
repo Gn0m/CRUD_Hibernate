@@ -5,8 +5,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=myDB
-    volumes:
-      - ./src/main/db/picture.sql:/docker-entrypoint-initdb.d/picture.sql
+#    volumes:
+#      - ./src/main/db/picture.sql:/docker-entrypoint-initdb.d/picture.sql
   my-web-app:
     build: .
     ports:
