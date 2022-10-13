@@ -1,6 +1,6 @@
-package com.example.crud.View;
+package com.example.crud.Servlets;
 
-import com.example.crud.Controller.ConnectorDAO;
+import com.example.crud.Model.DAO.ConnectorDAO;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;

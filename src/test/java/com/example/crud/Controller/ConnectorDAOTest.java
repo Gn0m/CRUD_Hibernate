@@ -1,5 +1,6 @@
 package com.example.crud.Controller;
 
+import com.example.crud.Model.DAO.ConnectorDAO;
 import com.example.crud.Model.PictureEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -203,6 +204,8 @@ class ConnectorDAOTest {
             extracted = connectorDAO.selectOne(1);
 
             transaction.commit();
+
+            assertNull(extracted);
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
@@ -210,6 +213,5 @@ class ConnectorDAOTest {
             entityManager.close();
             entityManagerFactory.close();
         }
-        assertNull(extracted);
     }
 }

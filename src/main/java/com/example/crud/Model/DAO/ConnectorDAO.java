@@ -1,4 +1,4 @@
-package com.example.crud.Controller;
+package com.example.crud.Model.DAO;
 
 import com.example.crud.Model.PictureEntity;
 import jakarta.persistence.*;

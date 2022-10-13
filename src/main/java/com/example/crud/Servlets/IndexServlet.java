@@ -1,10 +1,10 @@
-package com.example.crud.View;
+package com.example.crud.Servlets;
 
 import java.io.*;
 
 import java.util.List;
 
-import com.example.crud.Controller.ConnectorDAO;
+import com.example.crud.Model.DAO.ConnectorDAO;
 import com.example.crud.Model.PictureEntity;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
