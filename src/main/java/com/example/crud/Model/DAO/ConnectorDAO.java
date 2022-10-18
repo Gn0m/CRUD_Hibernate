@@ -2,6 +2,10 @@ package com.example.crud.Model.DAO;
 
 import com.example.crud.Model.PictureEntity;
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 public class ConnectorDAO implements IConnection {
+
 
     public List<PictureEntity> selectAll() {
         List<PictureEntity> pictures;
@@ -20,7 +25,7 @@ public class ConnectorDAO implements IConnection {
         try {
             transaction.begin();
 
-            pictures = entityManager.createQuery("select p from PictureEntity p", PictureEntity.class).getResultList();
+            pictures = entityManager.createNamedQuery("get_all_picture", PictureEntity.class).getResultList();
 
             transaction.commit();
         } finally {
@@ -43,12 +48,16 @@ public class ConnectorDAO implements IConnection {
         try {
             transaction.begin();
 
-            Query query = entityManager.createQuery("select p from PictureEntity p where p.id=:id");
-            query.setParameter("id", id);
+            CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+
+            CriteriaQuery<PictureEntity> criteria = builder.createQuery(PictureEntity.class);
+            Root<PictureEntity> root = criteria.from(PictureEntity.class);
+            Predicate predicate = builder.equal(root.get("Id"), id);
+            criteria.where(predicate);
 
             try {
-                picture = (PictureEntity) query.getSingleResult();
-            } catch (NoResultException e){
+                picture = entityManager.createQuery(criteria).getSingleResult();
+            } catch (NoResultException e) {
                 picture = null;
             }
 

@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.Objects;
-
+@NamedQuery(
+        name = "get_all_picture",
+        query = "from PictureEntity"
+)
 @Entity
 @Table(name = "picture", schema = "mydb")
 public class PictureEntity {
